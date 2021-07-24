@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(ProviderScope (child: FirebaseConnector()));
+  runApp(ProviderScope(child: FirebaseConnector()));
 }
 
 class FirebaseConnector extends ConsumerWidget {
-  const FirebaseConnector({Key? key}):super(key:key);
+  const FirebaseConnector({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, watch) {
     final firebaseConnector = watch(firebaseProvider);
 
     return firebaseConnector.when(
-      data: (_) =>  Container(color: Colors.lime,),
+      data: (_) => Container(
+        color: Colors.pinkAccent[700],
+      ),
       loading: () => Container(
         color: Colors.orange,
       ),
@@ -28,4 +30,3 @@ class FirebaseConnector extends ConsumerWidget {
 final firebaseProvider = FutureProvider<FirebaseApp>((ref) async {
   return Firebase.initializeApp();
 });
-
